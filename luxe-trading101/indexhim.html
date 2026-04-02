@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Luxe Trading101 | Premium Signals & Mentorship</title>
+  <style>
+    /* Base & Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: radial-gradient(circle at top right, #1f1c0d, #0a0a0a, #050505);
+      color: #ffffff;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* Glassmorphism Utilities */
+    .glass {
+      background: rgba(255, 255, 255, 0.03);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 215, 0, 0.1);
+      box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    }
+
+    /* Typography & Accents */
+    .text-gold { color: #FFD700; }
+    h1, h2, h3 { font-weight: 600; letter-spacing: -0.5px; }
+
+    /* Navigation */
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 5%;
+      z-index: 1000;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .logo {
+      font-size: 22px;
+      font-weight: 800;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    nav a {
+      color: #ccc;
+      text-decoration: none;
+      margin: 0 15px;
+      font-size: 14px;
+      transition: color 0.3s;
+    }
+
+    nav a:hover { color: #FFD700; }
+
+    .nav-buttons button {
+      background: transparent;
+      border: 1px solid #FFD700;
+      color: #FFD700;
+      padding: 8px 20px;
+      border-radius: 30px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.3s;
+      margin-left: 10px;
+    }
+
+    .nav-buttons button:hover {
+      background: #FFD700;
+      color: #000;
+    }
+
+    /* Hero Section */
+    .hero {
+      text-align: center;
+      padding: 180px 20px 100px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .hero h1 {
+      font-size: clamp(40px, 5vw, 64px);
+      margin-bottom: 20px;
+      line-height: 1.1;
+    }
+
+    .hero p {
+      font-size: 20px;
+      color: #aaa;
+      max-width: 600px;
+      margin-bottom: 40px;
+    }
+
+    /* About Section */
+    .about-section {
+      padding: 80px 5%;
+      text-align: center;
+      background: rgba(255, 215, 0, 0.02);
+    }
+
+    .about-container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .about-text {
+      font-size: 22px;
+      line-height: 1.6;
+      color: #e0e0e0;
+      font-style: italic;
+    }
+
+    /* Common Section Styles */
+    .section {
+      padding: 80px 5%;
+      text-align: center;
+    }
+
+    .section h2 {
+      font-size: 36px;
+      margin-bottom: 50px;
+    }
+
+    /* Buttons */
+    .cta-btn {
+      padding: 16px 40px;
+      background: linear-gradient(135deg, #FFD700, #B8860B);
+      color: #000;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      font-size: 18px;
+      font-weight: 700;
+      transition: transform 0.3s, box-shadow 0.3s;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .cta-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px rgba(255, 215, 0, 0.2);
+    }
+
+    /* Community Section */
+    .community-grid {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-top: 30px;
+    }
+
+    .social-card {
+      padding: 30px;
+      border-radius: 15px;
+      width: 280px;
+      text-decoration: none;
+      color: white;
+      transition: background 0.3s;
+    }
+
+    .social-card:hover {
+      background: rgba(255, 215, 0, 0.08);
+    }
+
+    .social-card h4 {
+      color: #FFD700;
+      margin-bottom: 10px;
+      font-size: 20px;
+    }
+
+    /* Cards Layout */
+    .cards {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      flex-wrap: wrap;
+    }
+
+    .card {
+      padding: 40px 30px;
+      border-radius: 20px;
+      width: 300px;
+      text-align: left;
+      transition: transform 0.4s, border-color 0.4s;
+    }
+
+    .card:hover {
+      transform: translateY(-10px);
+      border-color: rgba(255, 215, 0, 0.5);
+    }
+
+    .card h3 {
+      font-size: 24px;
+      margin-bottom: 15px;
+      color: #FFD700;
+    }
+
+    .card p { color: #aaa; line-height: 1.6; }
+
+    /* Pricing Section */
+    .price { font-size: 32px; font-weight: bold; margin: 20px 0; }
+    .price span { font-size: 16px; color: #888; font-weight: normal; }
+
+    /* Login Modal */
+    .modal-overlay {
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.9);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 2000;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .modal-overlay.active { display: flex; opacity: 1; }
+
+    .modal-content {
+      width: 90%;
+      max-width: 400px;
+      padding: 40px;
+      border-radius: 20px;
+      text-align: center;
+      position: relative;
+    }
+
+    .close-modal {
+      position: absolute;
+      top: 15px; right: 20px;
+      font-size: 24px;
+      cursor: pointer;
+      color: #aaa;
+    }
+
+    .modal-content input {
+      width: 100%;
+      padding: 15px;
+      margin: 10px 0;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 8px;
+      color: white;
+      outline: none;
+    }
+
+    .modal-content input:focus { border-color: #FFD700; }
+
+    /* Animations */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(30px);
+      animation: fadeUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    @keyframes fadeUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    footer {
+      text-align: center;
+      padding: 60px 20px;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      color: #666;
+    }
+  </style>
+</head>
+<body>
+
+<header class="glass">
+  <div class="logo"><span class="text-gold">Luxe</span> Trading</div>
+  <nav>
+    <a href="#">Home</a>
+    <a href="#about">About</a>
+    <a href="#pricing">Pricing</a>
+    <a href="#community">Community</a>
+  </nav>
+  <div class="nav-buttons">
+    <button onclick="toggleModal()">Client Login</button>
+  </div>
+</header>
+
+<section class="hero">
+  <h1 class="fade-up">Trade Smarter.<br><span class="text-gold">Earn Bigger.</span></h1>
+  <p class="fade-up" style="animation-delay: 0.2s;">Institutional-grade signals, 1-on-1 mentorship, and proprietary automated trading systems.</p>
+  <a href="#pricing" class="cta-btn fade-up" style="animation-delay: 0.4s;">Get Full Access</a>
+</section>
+
+<section id="about" class="about-section fade-up">
+  <div class="about-container">
+    <p class="about-text">
+      <span class="text-gold" style="font-style: normal; font-weight: 800;">Luxe Trading</span> is not about signals or classes. We are a family where traders support each other, share experiences, and grow together in the exciting world of trading.
+    </p>
+  </div>
+</section>
+
+<section id="services" class="section">
+  <h2 class="fade-up">Our Edge</h2>
+  <div class="cards">
+    <div class="card glass fade-up">
+      <h3>Live Signals</h3>
+      <p>Real-time, high-probability setups delivered directly to your device with exact entry and targets.</p>
+    </div>
+    <div class="card glass fade-up" style="animation-delay: 0.2s;">
+      <h3>Mentorship</h3>
+      <p>Master market structure, liquidity concepts, and psychology with veteran trading educators.</p>
+    </div>
+    <div class="card glass fade-up" style="animation-delay: 0.4s;">
+      <h3>AI Systems</h3>
+      <p>Deploy our backtested automated algorithms to capitalize on market volatility 24/5.</p>
+    </div>
+  </div>
+</section>
+
+<section id="community" class="section" style="background: rgba(0,0,0,0.3);">
+  <h2 class="fade-up">Join The Family</h2>
+  <p class="fade-up" style="color: #aaa; margin-top: -30px; margin-bottom: 40px;">Connect with us and fellow traders across our social platforms.</p>
+  <div class="community-grid">
+    <a href="https://chat.whatsapp.com/KjbMHPZb5PJ9k77GePkhyH?mode=gi_t" target="_blank" class="social-card glass fade-up">
+      <h4>WhatsApp Group</h4>
+      <p>Real-time community discussions and market insights.</p>
+      <span class="text-gold" style="display: block; margin-top: 15px; font-weight: bold;">Join Chat →</span>
+    </a>
+    <a href="https://www.instagram.com/luxe_trading101?igsh=MTM2NXo3ZW03bHI0MQ%3D%3D&utm_source=qr" target="_blank" class="social-card glass fade-up" style="animation-delay: 0.2s;">
+      <h4>Instagram</h4>
+      <p>Daily analysis, results, and trading lifestyle content.</p>
+      <span class="text-gold" style="display: block; margin-top: 15px; font-weight: bold;">Follow Us →</span>
+    </a>
+  </div>
+</section>
+
+<section id="pricing" class="section">
+  <h2 class="fade-up">Membership Plans</h2>
+  <div class="cards">
+    <div class="card glass fade-up">
+      <h3>Signals Only</h3>
+      <div class="price">R249.99<span> / month</span></div>
+      <p style="margin-bottom: 20px;">Daily major pair analysis and precise alerts.</p>
+      <button class="cta-btn" style="width:100%; font-size: 16px; padding: 12px;">Subscribe</button>
+    </div>
+    <div class="card glass fade-up" style="border-color: #FFD700; animation-delay: 0.2s;">
+      <h3>Luxe VIP Room</h3>
+      <div class="price">R499.99<span> / month</span></div>
+      <p style="margin-bottom: 20px;">Signals, full course access, and weekly live sessions.</p>
+      <button class="cta-btn" style="width:100%; font-size: 16px; padding: 12px;">Join VIP</button>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>© 2026 Luxe Trading. All rights reserved.</p>
+  <div style="margin-top: 15px;">
+    <a href="https://www.instagram.com/luxe_trading101" target="_blank" style="color: #666; text-decoration: none; margin: 0 10px;">Instagram</a>
+    <a href="https://chat.whatsapp.com" target="_blank" style="color: #666; text-decoration: none; margin: 0 10px;">WhatsApp</a>
+  </div>
+</footer>
+
+<div class="modal-overlay" id="loginModal">
+  <div class="modal-content glass">
+    <span class="close-modal" onclick="toggleModal()">&times;</span>
+    <h2 style="margin-bottom: 20px;">Member <span class="text-gold">Portal</span></h2>
+    <input type="email" placeholder="Email Address" required>
+    <input type="password" placeholder="Password" required>
+    <button class="cta-btn" style="width: 100%; margin-top: 15px;">Login to Dashboard</button>
+  </div>
+</div>
+
+<script>
+  function toggleModal() {
+    document.getElementById('loginModal').classList.toggle('active');
+  }
+
+  // Close modal when clicking outside
+  window.onclick = function(event) {
+    const modal = document.getElementById('loginModal');
+    if (event.target == modal) { modal.classList.remove('active'); }
+  }
+
+  // Scroll animation
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.animationPlayState = 'running';
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.fade-up').forEach((el) => {
+    el.style.animationPlayState = 'paused';
+    observer.observe(el);
+  });
+</script>
+
+</body>
+</html> 
